@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мои привычки</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Мои привычки</h1>
+      <p>Добавляйте полезные привычки и следите за их выполнением.</p>
+    </header>
+
+    <form id="habit-form">
+      <label for="habit-input">Новая привычка</label>
+      <input
+        id="habit-input"
+        name="habit"
+        type="text"
+        placeholder="Например, выпить стакан воды"
+      >
+      <button type="submit">Добавить</button>
+    </form>
+
+    <ul id="habit-list" aria-label="Список привычек"></ul>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f7f5;
+  color: #26332d;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+}
+
+main {
+  width: 100%;
+  max-width: 640px;
+  padding: 40px;
+  background: #ffffff;
+  border: 1px solid #dfe9e4;
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(48, 78, 64, 0.1);
+}
+
+header {
+  margin-bottom: 28px;
+}
+
+h1 {
+  margin: 0 0 8px;
+  color: #244c3b;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+header p {
+  margin: 0;
+  color: #64736c;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+form > label {
+  grid-column: 1 / -1;
+  font-weight: 600;
+}
+
+#habit-input,
+button {
+  min-height: 46px;
+  border-radius: 10px;
+  font: inherit;
+}
+
+#habit-input {
+  width: 100%;
+  min-width: 0;
+  padding: 10px 14px;
+  border: 1px solid #bdccc5;
+  background: #ffffff;
+  color: #26332d;
+}
+
+#habit-input::placeholder {
+  color: #87938e;
+}
+
+#habit-input:focus {
+  border-color: #3f7c63;
+  outline: 3px solid rgba(63, 124, 99, 0.18);
+}
+
+button {
+  padding: 10px 20px;
+  border: 0;
+  background: #3f7c63;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+button:hover {
+  background: #326650;
+}
+
+button:focus-visible {
+  outline: 3px solid rgba(63, 124, 99, 0.3);
+  outline-offset: 2px;
+}
+
+#habit-list {
+  display: grid;
+  gap: 12px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+#habit-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  background: #f8fbf9;
+  border: 1px solid #dfe9e4;
+  border-radius: 12px;
+}
+
+#habit-list label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+#habit-list input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: #3f7c63;
+  cursor: pointer;
+}
+
+#habit-list input[type="checkbox"]:focus-visible {
+  outline: 3px solid rgba(63, 124, 99, 0.3);
+  outline-offset: 2px;
+}
+
+#habit-list span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+#habit-list button {
+  min-height: 38px;
+  padding: 7px 14px;
+  border: 1px solid #e2a5a1;
+  background: #fff5f4;
+  color: #9b3732;
+}
+
+#habit-list button:hover {
+  border-color: #a83d37;
+  background: #a83d37;
+  color: #ffffff;
+}
+
+#habit-list button:focus-visible {
+  outline-color: rgba(168, 61, 55, 0.35);
+}
+
+@media (max-width: 520px) {
+  body {
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  main {
+    padding: 24px 20px;
+    border-radius: 14px;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  form > label {
+    grid-column: auto;
+  }
+
+  form button {
+    width: 100%;
+  }
+
+  #habit-list li {
+    gap: 10px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  #habit-list li {
+    grid-template-columns: 1fr;
+  }
+
+  #habit-list button {
+    justify-self: end;
+  }
+}
