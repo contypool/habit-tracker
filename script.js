@@ -1,7 +1,17 @@
 const habitForm = document.querySelector('#habit-form');
 const habitInput = document.querySelector('#habit-input');
 const habitList = document.querySelector('#habit-list');
+const habitProgress = document.querySelector('#habit-progress');
 const storageKey = 'habits';
+
+function updateProgress() {
+  const totalHabits = habitList.querySelectorAll('li').length;
+  const completedHabits = habitList.querySelectorAll(
+    'input[type="checkbox"]:checked'
+  ).length;
+
+  habitProgress.textContent = `Выполнено: ${completedHabits} из ${totalHabits}`;
+}
 
 function saveHabits() {
   const habits = [];
@@ -46,11 +56,13 @@ function createHabitElement(habitName, isCompleted = false) {
   habitCheckbox.addEventListener('change', function () {
     updateHabitText();
     saveHabits();
+    updateProgress();
   });
 
   deleteButton.addEventListener('click', function () {
     habitItem.remove();
     saveHabits();
+    updateProgress();
   });
 
   habitLabel.append(habitCheckbox, habitText);
@@ -66,6 +78,8 @@ function loadHabits() {
     const habitItem = createHabitElement(habit.name, habit.completed);
     habitList.append(habitItem);
   });
+
+  updateProgress();
 }
 
 habitForm.addEventListener('submit', function (event) {
@@ -80,6 +94,7 @@ habitForm.addEventListener('submit', function (event) {
   const habitItem = createHabitElement(habitName);
   habitList.append(habitItem);
   saveHabits();
+  updateProgress();
 
   habitInput.value = '';
 });
