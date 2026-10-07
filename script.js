@@ -1,16 +1,22 @@
 const habitForm = document.querySelector('#habit-form');
 const habitInput = document.querySelector('#habit-input');
 const habitList = document.querySelector('#habit-list');
-const habitProgress = document.querySelector('#habit-progress');
+const progressSummary = document.querySelector('#progress-summary');
+const progressBar = document.querySelector('.progress-bar');
+const progressFill = document.querySelector('#progress-fill');
 const storageKey = 'habits';
 
 function updateProgress() {
-  const totalHabits = habitList.querySelectorAll('li').length;
-  const completedHabits = habitList.querySelectorAll(
-    'input[type="checkbox"]:checked'
-  ).length;
+  const habitCheckboxes = habitList.querySelectorAll('input[type="checkbox"]');
+  const totalHabits = habitCheckboxes.length;
+  const completedHabits = habitList.querySelectorAll('input[type="checkbox"]:checked').length;
+  const percentage = totalHabits === 0 ? 0 : Math.round((completedHabits / totalHabits) * 100);
+  const summary = `Выполнено: ${completedHabits} из ${totalHabits}`;
 
-  habitProgress.textContent = `Выполнено: ${completedHabits} из ${totalHabits}`;
+  progressSummary.textContent = summary;
+  progressFill.style.width = `${percentage}%`;
+  progressBar.setAttribute('aria-valuenow', String(percentage));
+  progressBar.setAttribute('aria-valuetext', summary);
 }
 
 function saveHabits() {
@@ -28,6 +34,7 @@ function saveHabits() {
   });
 
   localStorage.setItem(storageKey, JSON.stringify(habits));
+  updateProgress();
 }
 
 function createHabitElement(habitName, isCompleted = false) {
@@ -56,13 +63,11 @@ function createHabitElement(habitName, isCompleted = false) {
   habitCheckbox.addEventListener('change', function () {
     updateHabitText();
     saveHabits();
-    updateProgress();
   });
 
   deleteButton.addEventListener('click', function () {
     habitItem.remove();
     saveHabits();
-    updateProgress();
   });
 
   habitLabel.append(habitCheckbox, habitText);
@@ -78,8 +83,6 @@ function loadHabits() {
     const habitItem = createHabitElement(habit.name, habit.completed);
     habitList.append(habitItem);
   });
-
-  updateProgress();
 }
 
 habitForm.addEventListener('submit', function (event) {
@@ -94,9 +97,9 @@ habitForm.addEventListener('submit', function (event) {
   const habitItem = createHabitElement(habitName);
   habitList.append(habitItem);
   saveHabits();
-  updateProgress();
 
   habitInput.value = '';
 });
 
 loadHabits();
+updateProgress();

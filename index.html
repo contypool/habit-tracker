@@ -27,9 +27,20 @@
   Отмечайте выполненные привычки и удаляйте те, которые больше не нужны.
 </p>
 
-    <p id="habit-progress" class="habit-progress" aria-live="polite">
-      Выполнено: 0 из 0
-    </p>
+    <section class="progress" aria-label="Прогресс привычек">
+      <p id="progress-summary">Выполнено: 0 из 0</p>
+      <div
+        class="progress-bar"
+        role="progressbar"
+        aria-label="Доля выполненных привычек"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+        aria-valuetext="Выполнено: 0 из 0"
+      >
+        <div id="progress-fill"></div>
+      </div>
+    </section>
 
     <ul id="habit-list" aria-label="Список привычек"></ul>
   </main>

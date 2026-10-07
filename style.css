@@ -110,6 +110,31 @@ button:focus-visible {
   list-style: none;
 }
 
+.progress {
+  margin-top: 20px;
+}
+
+#progress-summary {
+  margin: 0 0 8px;
+  color: #46574f;
+  font-weight: 600;
+}
+
+.progress-bar {
+  height: 12px;
+  overflow: hidden;
+  background: #e7eee9;
+  border-radius: 999px;
+}
+
+#progress-fill {
+  width: 0;
+  height: 100%;
+  background: #3f7c63;
+  border-radius: inherit;
+  transition: width 0.25s ease;
+}
+
 #habit-list li {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
